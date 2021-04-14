@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./styles.css";
 
 /*
 NOTES:
 React Keys: If we were to update a todo's text or done value, the key is what tells React which todo item needs to be updated.
+React refs and useRef
+- To perform common actions such as clearing out an input's value or focusing our input we can use what's called a ref.
+- using inputRef, we create a reference to our input element to access wherever we like
+- within handleAddTodo function, we can access property inputRef.current & can mutate it directly
+- we use it to automatically clear input here
 */
 
 function TodoList({ todos }) {
@@ -19,6 +24,8 @@ function TodoList({ todos }) {
 }
 
 function AddToDo({ setTodos }) {
+  const inputRef = useRef();
+
   function handleAddTodo(event) {
     event.preventDefault()
     const text = event.target.elements.addTodo.value;
@@ -30,10 +37,11 @@ function AddToDo({ setTodos }) {
     setTodos(prevTodos => {
       return prevTodos.concat(todo)
     })
+    inputRef.current.value = "";
   }
   return (
     <form onSubmit={handleAddTodo}>
-      <input placeholder="Add todo" />
+      <input name="addTodo" placeholder="Add todo" ref={inputRef} />
       <button type="submit">Submit</button>
     </form>
   )
