@@ -1,6 +1,10 @@
 import { useState, useRef } from "react";
 import "./styles.css";
 
+import LoadingThumbnail from './assets/loading_thumbnail.jpg'
+import desktopVideo from './assets/loading_fubuzilla_is_coming_kaynimatic.mp4';
+import tabletVideo from './assets/720p_loading_fubuzilla_is_coming_kaynimatic.mp4';
+import mobileVideo from './assets/480p_loading_fubuzilla_is_coming_kaynimatic.mp4';
 /*
 NOTES:
 React Keys: If we were to update a todo's text or done value, the key is what tells React which todo item needs to be updated.
@@ -23,13 +27,14 @@ export default function App() {
     { id: 2, text: "Do laundry", done: false },
     { id: 3, text: "Take shower", done: false }
   ]);
-  
+
   return (
     <div className="App">
       <h1>Todo List</h1>
 
       <TodoList todos={todos} setTodos={setTodos} />
       <AddToDo setTodos={setTodos} />
+      <Loading />
     </div>
   );
 }
@@ -48,7 +53,7 @@ function TodoList({ todos, setTodos }) {
     })
     setTodos(updatedTodos)
   }
-  
+
   if (!todos.length) {
     return <p>No todos left!</p>;
   }
@@ -121,3 +126,35 @@ function AddToDo({ setTodos }) {
     </form>
   )
 }
+
+const getVideoSrc = width => {
+  if (width >= 1080) return desktopVideo;
+  if (width >= 720) return tabletVideo;
+  return mobileVideo;
+};
+
+function Loading(props) {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const srcVideo = getVideoSrc(window.innerWidth);
+  const onLoadedData = () => {
+    setIsVideoLoaded(true);
+  };
+  return (
+    <div className="container">
+      <img
+        src={LoadingThumbnail}
+        className="video-thumb tiny"
+        alt="thumb"
+        style={{ opacity: isVideoLoaded ? 0 : 1 }}
+      />
+      <video
+        autoPlay
+        playsInline
+        muted
+        src={srcVideo}
+        onLoadedData={onLoadedData}
+        style={{ opacity: isVideoLoaded ? 1 : 0 }}
+      />
+    </div>
+  );
+};
