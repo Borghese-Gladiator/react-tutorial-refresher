@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./styles.css";
 
 /*
@@ -17,7 +18,7 @@ function TodoList({ todos }) {
   )
 }
 
-function AddToDo() {
+function AddToDo({ setTodos }) {
   function handleAddTodo(event) {
     event.preventDefault()
     const text = event.target.elements.addTodo.value;
@@ -26,6 +27,9 @@ function AddToDo() {
       text,
       done: false
     };
+    setTodos(prevTodos => {
+      return prevTodos.concat(todo)
+    })
   }
   return (
     <form onSubmit={handleAddTodo}>
@@ -36,18 +40,18 @@ function AddToDo() {
 }
 
 export default function App() {
-  const todos = [
+  const [todos, setTodos] = useState([
     { id: 1, text: "Wash dishes", done: false },
     { id: 2, text: "Do laundry", done: false },
     { id: 3, text: "Take shower", done: false }
-  ];
+  ]);
 
   return (
     <div className="App">
       <h1>Todo List</h1>
 
-      <TodoList />
-      <AddToDo />
+      <TodoList todos={todos} />
+      <AddToDo setTodos={setTodos} />
     </div>
   );
 }
