@@ -10,6 +10,10 @@ React refs and useRef
 - within handleAddTodo function, we can access property inputRef.current & can mutate it directly
 - we use it to automatically clear input here
 
+OVERALL:
+- learned window.confirm for dialog prompt
+- reorder to have container component at top w/ presentation components below
+- learned to pass setState down & just use that hook to update state for all components (as it bubbles up)
 */
 
 
@@ -48,7 +52,7 @@ function TodoList({ todos, setTodos }) {
   if (!todos.length) {
     return <p>No todos left!</p>;
   }
-  
+
   return (
     <ul>
       {todos.map((todo) => (
