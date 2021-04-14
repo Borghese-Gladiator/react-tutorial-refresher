@@ -14,3 +14,7 @@ If we were to update a todo's text or done value, the key is what tells React wh
 - learned window.confirm for dialog prompt
 - reorder to have container component at top w/ presentation components below
 - learned to pass setState down & just use that hook to update state for all components (as it bubbles up)
+
+
+## Learned Video Loading
+Followed tutorial for Responsive & Progressive Video Loading here: (https://frontend-digest.com/responsive-and-progressive-video-loading-in-react-e8753315af51)[https://frontend-digest.com/responsive-and-progressive-video-loading-in-react-e8753315af51]
