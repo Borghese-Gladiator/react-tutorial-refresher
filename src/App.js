@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import "./styles.css";
 
+// see video src: https://www.reddit.com/r/Hololive/comments/mpcb58/fubuzilla_is_coming_kaynimatic/?utm_medium=android_app&utm_source=share
 import LoadingThumbnail from './assets/loading_thumbnail.jpg'
 import desktopVideo from './assets/loading_fubuzilla_is_coming_kaynimatic.mp4';
 import tabletVideo from './assets/720p_loading_fubuzilla_is_coming_kaynimatic.mp4';
