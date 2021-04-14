@@ -151,6 +151,7 @@ function Loading(props) {
         autoPlay
         playsInline
         muted
+        loop
         src={srcVideo}
         onLoadedData={onLoadedData}
         style={{ opacity: isVideoLoaded ? 1 : 0 }}
