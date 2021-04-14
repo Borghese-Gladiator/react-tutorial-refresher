@@ -1,0 +1,2 @@
+# React Without Create React App
+Followed tutorial to build React ToDo List project here: [https://www.freecodecamp.org/news/react-tutorial-build-a-project/](https://www.freecodecamp.org/news/react-tutorial-build-a-project/)
