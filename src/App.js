@@ -9,16 +9,36 @@ React refs and useRef
 - using inputRef, we create a reference to our input element to access wherever we like
 - within handleAddTodo function, we can access property inputRef.current & can mutate it directly
 - we use it to automatically clear input here
+
 */
 
-function TodoList({ todos }) {
+function TodoList({ todos, setTodos }) {
+  function handleToggleTodo(todo) {
+    // if t.id === todo.id => changes done value to opposite
+    // else, do nothing
+    const updatedTodos = todos.map((t) => {
+      return (t.id === todo.id
+        ? {
+          ...t,
+          done: !t.done
+        }
+        : t)
+    })
+    setTodos(updatedTodos)
+  }
   return (
     <ul>
-      {
-        todos.map(todo => (
-          <li key={todo.id}>{todo.text}</li>
-        ))
-      }
+      {todos.map((todo) => (
+        <li
+          onClick={() => handleToggleTodo(todo)}
+          style={{
+            textDecoration: todo.done ? "line-through" : ""
+          }}
+          key={todo.id}
+        >
+          {todo.text}
+        </li>
+      ))}
     </ul>
   )
 }
@@ -58,7 +78,7 @@ export default function App() {
     <div className="App">
       <h1>Todo List</h1>
 
-      <TodoList todos={todos} />
+      <TodoList todos={todos} setTodos={setTodos} />
       <AddToDo setTodos={setTodos} />
     </div>
   );
